@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+*.env
+.env
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Logs and debug
+*.log
+logs/
+debug.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Model checkpoints
+models/*.pt
+models/*.ptl
+models/*.h5
+models/*.pkl
+
+# Alpaca & other API secret keys
+*.key
+*.pem
+
+# Dataset cache
+data/
+*.csv
+*.zip
+
+# Streamlit
+.streamlit/config.toml
+.streamlit/secrets.toml
+
+# Temporary files
+*.bak
+*.tmp
+~$*

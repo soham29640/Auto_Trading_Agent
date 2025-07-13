@@ -8,12 +8,10 @@ import joblib
 from src.models.LSTM_model import LSTMModel
 from src.utils.data_loader import fetch_data
 from src.utils.indicator_engine import add_indicators
-from src.wallets.wallet import Wallet
-
-wallet = Wallet(starting_cash=100000)
+from src.alpaca.alpaca_connector import AlpacaOrder
 
 class TradingAgent:
-    def __init__(self, ticker,wallet, model_path="models/LSTM_model.ptl", scaler_path="models/standard_scaler.pkl"):
+    def __init__(self, ticker, model_path="models/LSTM_model.ptl", scaler_path="models/standard_scaler.pkl"):
         self.ticker = ticker
         self.model = LSTMModel(input_size=9)
         self.model.load_state_dict(torch.load(model_path))
@@ -21,7 +19,7 @@ class TradingAgent:
         self.scaler = joblib.load(scaler_path)
         self.window_size = 78
         self.threshold = 0.001
-        self.wallet = wallet
+        self.alpaca = AlpacaOrder() 
 
     def fetch_and_prepare_data(self):
         df = fetch_data(self.ticker, interval="5m", period="7d")
@@ -35,7 +33,6 @@ class TradingAgent:
         return df[-self.window_size:].copy()
 
     def predict(self):
-        
         last_78 = self.fetch_and_prepare_data()
         current = last_78['Close'].iloc[-1]
         scaled = self.scaler.transform(last_78)
@@ -53,22 +50,16 @@ class TradingAgent:
 
         return current, predicted
 
-    def act(self, qty=10):
+    def act(self, qty=50):
         current, predicted = self.predict()
 
         if predicted > current * (1 + self.threshold):
-            if self.wallet.can_buy(current, qty):
-                self.wallet.buy(current, qty)
-                return "BUY", current, predicted
-            else:
-                return "BUY_SKIPPED_NO_CASH", current, predicted
+            self.alpaca.place_order(symbol=self.ticker, qty=qty, side="buy")
+            return "BUY", current, predicted
 
         elif predicted < current * (1 - self.threshold):
-            if self.wallet.can_sell(qty):
-                self.wallet.sell(current, qty)
-                return "SELL", current, predicted
-            else:
-                return "SELL_SKIPPED_NO_HOLDINGS", current, predicted
+            self.alpaca.place_order(symbol=self.ticker, qty=qty, side="sell")
+            return "SELL", current, predicted
 
         else:
             return "HOLD", current, predicted

@@ -6,5 +6,6 @@ matplotlib
 scikit-learn
 torch
 ta
-plotly
-streamlit_autorefresh
+python-dotenv
+alpaca-trade-api
+alpha_vantage==2.3.1

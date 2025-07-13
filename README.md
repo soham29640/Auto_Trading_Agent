@@ -1,4 +1,4 @@
-# 📈 AutoTrade AI
+# 📈 AutoTrade Agent
 
 **AutoTrade AI** is a real-time paper trading app that uses a rule-based or ML-based trading agent to simulate stock trades. Built with **Streamlit**, **yfinance**, and **Plotly**, it visualizes live stock data and lets users activate an auto-trading agent that evaluates and logs trades every 5 minutes.
 
@@ -17,8 +17,8 @@
 ## 🗂️ Project Structure
 
 ```
-Auto_Trade_AI/
-├── app.py                  
+Auto_Trading_Agent/
+├── auto_trade.py                  
 ├── logs/
 │   └── trades.csv             
 ├── models/ 
@@ -27,14 +27,12 @@ Auto_Trade_AI/
 ├── src/
 │   ├── agents/
 │   │   ├── trading_agent.py
-│   │   └── auto_trading_agent.py
-│   ├── wallets/
-│   │   └── wallet.py
 │   ├── utils/
 │   │   ├── data_loader.py
 │   │   └── indicator_engine.py
+│   ├── alpaca/
+│   │   ├── alpaca_connector.py
 |   └── models/
-|       ├── load_and_predict_LSTM_model.py
 |       ├── LSTM_model.py
 |       └── train_save_LSTM_model.py
 
