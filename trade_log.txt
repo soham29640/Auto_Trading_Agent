@@ -1,0 +1,10 @@
+[2026-04-21 09:47:40] >> Starting Auto Trading Agent for AAPL
+[2026-04-21 09:47:40] ERROR: No data fetched for ticker: AAPL
+[2026-04-21 09:49:00] >> Starting Auto Trading Agent for AAPL
+[2026-04-21 09:49:00] ERROR: insufficient buying power
+[2026-04-21 09:50:04] ERROR: insufficient buying power
+[2026-04-21 09:51:05] ERROR: insufficient buying power
+[2026-04-21 09:52:07] ERROR: insufficient buying power
+[2026-04-21 09:53:08] ERROR: insufficient buying power
+[2026-04-21 09:54:10] ERROR: insufficient buying power
+[2026-04-21 09:55:11] ERROR: insufficient buying power

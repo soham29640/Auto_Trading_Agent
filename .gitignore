@@ -4,11 +4,7 @@ __pycache__/
 *.so
 
 # Virtual environment
-.venv/
-env/
-venv/
-ENV/
-*.env
+myenv/
 .env
 
 # IDE / Editor settings
